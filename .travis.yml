@@ -23,7 +23,7 @@ deploy:
   key: latest.zip
   bundle_type: zip
   application: codedeploy-test
-  deployment_group: ''
+  deployment_group: 'codedeploy-test-group'
   on: *2
 after_success: 'zip -r latest.zip .'
 before_deploy:
