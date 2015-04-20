@@ -1,0 +1,30 @@
+branches: 
+only:
+- master
+language: python
+python:
+- '3.4'
+install: pip install -r requirements.txt
+script: nosetests tests
+deploy:
+- provider: s3
+  access_key_id: AKIAI46US37BJ27ZPPSQ
+  secret_access_key: &1
+    secure: FTNqSh4qtImJ6OWso/gefMav8bmrK+anAhoZdnQ5jG6pMD7f3JMImrXTXX75UejRIc3usw38yMZ/uRb/7uXZ/i92KapAU8VG7ln7vStfICmbmSEJo50tcUTiZS6yruDe8dNDPLiowpw35kjpDE4qNT4WqFCPZ9Duami+oA8f4uY=
+  local_dir: dpl_cd_upload
+  skip_cleanup: true
+  on: &2
+    repo: datamade/codedeploy-test
+  bucket: datamade-codedeploy
+- provider: codedeploy
+  access_key_id: AKIAI46US37BJ27ZPPSQ
+  secret_access_key: *1
+  bucket: datamade-codedeploy
+  key: latest.zip
+  bundle_type: zip
+  application: codedeploy-test
+  deployment_group: ''
+  on: *2
+before_deploy:
+- mkdir -p dpl_cd_upload
+- mv latest.zip dpl_cd_upload/latest.zip
