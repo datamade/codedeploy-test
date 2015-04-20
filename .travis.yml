@@ -25,3 +25,7 @@ deploy:
   application: codedeploy-test
   deployment_group: ''
   on: *2
+after_success: 'zip -r latest.zip .'
+before_deploy:
+- mkdir -p dpl_cd_upload
+- mv latest.zip dpl_cd_upload/latest.zip
