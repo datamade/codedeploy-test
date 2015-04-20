@@ -10,8 +10,7 @@ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-
 
 # Update APT and install dependencies
 sudo apt-get update
-sudo apt-get install -y postgresql-9.4 build-essential libssl-dev libbz2-dev \
-  libsqlite3-dev libreadline-dev supervisor
+sudo apt-get install -y postgresql-9.4 build-essential libssl-dev libbz2-dev libsqlite3-dev libreadline-dev supervisor
 
 # Setup datamade user
 sudo useradd -d /home/datamade -m -r datamade
